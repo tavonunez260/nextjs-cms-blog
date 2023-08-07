@@ -1,3 +1,58 @@
 {
-  "extends": "next/core-web-vitals"
+	"extends": "next/core-web-vitals",
+	"rules": {
+		"arrow-body-style": ["error", "as-needed"],
+		"import/order": [
+			"error",
+			{
+				"groups": [["builtin", "external"], ["parent", "sibling"], "index", "object", "type"],
+				"pathGroups": [
+					{
+						"pattern": "@/**",
+						"group": "parent"
+					}
+				],
+				"pathGroupsExcludedImportTypes": ["builtin"],
+				"newlines-between": "always",
+				"alphabetize": {
+					"order": "asc",
+					"caseInsensitive": true
+				}
+			}
+		],
+		"indent": [2, "tab"],
+		"no-unused-vars": [
+			"error",
+			{
+				"ignoreRestSiblings": true,
+				"destructuredArrayIgnorePattern": "[A-Z]",
+				"caughtErrors": "none"
+			}
+		],
+		"no-use-before-define": [
+			"error",
+			{
+				"functions": false,
+				"classes": true
+			}
+		],
+		"no-var": "error",
+		"prefer-const": "error",
+		"quotes": [
+			"error",
+			"single",
+			{
+              "avoidEscape": true,
+				"allowTemplateLiterals": true
+			}
+		],
+		"react/self-closing-comp": [
+			"error",
+			{
+				"component": true,
+				"html": true
+			}
+		],
+		"semi": ["error", "always"]
+	}
 }
