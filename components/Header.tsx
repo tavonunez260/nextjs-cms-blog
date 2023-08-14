@@ -1,11 +1,17 @@
-import Link from 'next/link';
+'use client';
 
-const categories = [
-	{ name: 'React', slug: 'react' },
-	{ name: 'Web Development', slug: 'web-dev' }
-];
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+import { getCategories } from '@/services';
+import { Category } from '@/types';
 
 export function Header() {
+	const [categories, setCategories] = useState<Category[]>([]);
+	
+	useEffect(() => {
+		getCategories().then(response => setCategories(response));
+	}, []);
 	return (
 		<div className="container mx-auto px-10 mb-8">
 			<div className="border-b w-full inline-block border-blue-400 py-8">

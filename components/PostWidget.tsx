@@ -18,7 +18,7 @@ export function PostWidget({ categories, slug }: PostWidgetType) {
 
 	useEffect(() => {
 		if (slug) {
-			getSimilarPosts(categories, slug).then(result => setRelatedPosts(result));
+			getSimilarPosts(categories, slug).then(response => setRelatedPosts(response));
 		} else {
 			getRecentPosts().then(result => setRelatedPosts(result));
 		}
