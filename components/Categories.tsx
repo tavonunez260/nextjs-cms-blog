@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { getCategories } from '@/services';
-import { Category } from '@/types';
+import { CategoryType } from '@/types';
 
 export function Categories() {
-	const [categories, setCategories] = useState<Category[]>([]);
+	const [categories, setCategories] = useState<CategoryType[]>([]);
 
 	useEffect(() => {
 		getCategories().then(response => setCategories(response));

@@ -3,9 +3,9 @@
 import moment from 'moment';
 import Link from 'next/link';
 
-import { Post } from '@/types';
+import { PostType } from '@/types';
 
-export function PostCard(post: Post) {
+export function PostCard(post: PostType) {
 	console.log(post);
 
 	return (

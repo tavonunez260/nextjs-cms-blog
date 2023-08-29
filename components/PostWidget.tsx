@@ -5,19 +5,19 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { getRecentPosts, getSimilarPosts } from '@/services';
-import { Post } from '@/types';
+import { PostType } from '@/types';
 
 
 type PostWidgetType = {
-	categories: string;
+	categories?: string[];
 	slug?: string;
 };
 
 export function PostWidget({ categories, slug }: PostWidgetType) {
-	const [relatedPosts, setRelatedPosts] = useState<Post[]>([]);
+	const [relatedPosts, setRelatedPosts] = useState<PostType[]>([]);
 
 	useEffect(() => {
-		if (slug) {
+		if (categories && slug) {
 			getSimilarPosts(categories, slug).then(response => setRelatedPosts(response));
 		} else {
 			getRecentPosts().then(result => setRelatedPosts(result));
