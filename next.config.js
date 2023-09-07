@@ -6,6 +6,9 @@ const nextConfig = {
 	assetPrefix: undefined,
 	basePath: '',
 	reactStrictMode: true,
+	experimental: {
+		appDir: true
+	},
 	sassOptions: {
 		includePaths: [path.join(__dirname, 'styles')],
 	},
