@@ -1,5 +1,4 @@
 import moment from 'moment/moment';
-import Image from 'next/image';
 import React from 'react';
 
 import { Child, ChildType, PostType, RawChild } from '@/types';
@@ -58,12 +57,11 @@ export function PostDetail(post: PostType) {
 						className="relative mx-auto"
 						style={{ width: (obj as RawChild)?.width, height: (obj as RawChild)?.height }}
 					>
-						<Image
+						<img
 							key={index}
 							alt={(obj as RawChild)?.title as string}
-							fill
-							sizes=""
 							src={(obj as RawChild)?.src as string}
+							className="w-full h-full"
 						/>
 					</div>
 				);
@@ -75,11 +73,9 @@ export function PostDetail(post: PostType) {
 	return (
 		<div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 ">
 			<div className="relative w-full h-80 overflow-hidden shadow-md mb-6">
-				<Image
+				<img
 					src={post.featuredImage.url}
 					alt={post.title}
-					fill
-					sizes=""
 					className="object-cover rounded-t-lg"
 				/>
 			</div>
@@ -87,12 +83,10 @@ export function PostDetail(post: PostType) {
 				<div className="flex items-center mb-8 w-full">
 					<div className="flex items-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
 						<div className="relative w-[30px] h-[30px]">
-							<Image
+							<img
 								src={post.author.photo.url}
 								alt={post.author.name}
-								fill
-								sizes=""
-								className="rounded-full"
+								className="align-middle rounded-full w-full h-full"
 							/>
 						</div>
 						<p className="inline align-middle text-gray-700 ml-2 text-lg">{post.author.name}</p>

@@ -1,5 +1,4 @@
 import moment from 'moment';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { getRecentPosts, getSimilarPosts } from '@/services';
@@ -20,12 +19,10 @@ export async function PostWidget({ categories, slug }: PostWidgetType) {
 			{relatedPosts.map(relatedPost => (
 				<div key={relatedPost.title} className="flex items-center w-full mb-4">
 					<div className="relative w-8 h-8">
-						<Image
+						<img
 							src={relatedPost.featuredImage.url}
 							alt={relatedPost.title}
-							fill
-							sizes=""
-							className="rounded-full"
+							className="align-middle rounded-full w-full h-full"
 						/>
 					</div>
 					<div className="flex-grow ml-4">

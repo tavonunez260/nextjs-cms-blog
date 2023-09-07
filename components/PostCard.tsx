@@ -1,5 +1,4 @@
 import moment from 'moment';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { PostType } from '@/types';
@@ -9,12 +8,11 @@ export function PostCard(post: PostType) {
 	return (
 		<div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
 			<div className="relative overflow-hidden shadow-md mb-6">
-				<div className="relative w-full h-80">
-					<Image
+				<div className="relative w-full h-60">
+					<img
 						src={post.featuredImage.url}
 						alt={post.title}
-						fill
-						className="object-cover shadow-lg rounded-t-lg lg:rounded-lg"
+						className="object-cover shadow-lg rounded-t-lg lg:rounded-lg w-full h-full"
 					/>
 				</div>
 			</div>
@@ -24,12 +22,10 @@ export function PostCard(post: PostType) {
 			<div className="block lg:flex text-center items-center justify-center mb-8 w-full">
 				<div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
 					<div className="relative w-[30px] h-[30px]">
-						<Image
+						<img
 							src={post.author.photo.url}
 							alt={post.author.name}
-							fill
-							sizes=""
-							className="rounded-full"
+							className="align-middle rounded-full w-full h-full"
 						/>
 					</div>
 					<p className="inline align-middle text-gray-700 ml-2 text-lg">{post.author.name}</p>

@@ -7,9 +7,8 @@ const createNextPluginPreval = require('next-plugin-preval/config');
 const path = require('path');
 const withNextPluginPreval = createNextPluginPreval();
 
-
 const nextConfig = {
-	assetPrefix: undefined,
+	output: 'export',
 	basePath: '',
 	reactStrictMode: true,
 	experimental: {
@@ -17,9 +16,6 @@ const nextConfig = {
 	},
 	sassOptions: {
 		includePaths: [path.join(__dirname, 'styles')]
-	},
-	images: {
-		domains: ['media.graphassets.com']
 	}
 };
 
