@@ -23,6 +23,7 @@
     "html-react-parser": "^4.2.2",
     "moment": "^2.29.4",
     "next": "13.4.12",
+    "next-plugin-preval": "^1.2.5",
     "node-sass": "^9.0.0",
     "postcss": "8.4.27",
     "prettier": "3.0.0",
