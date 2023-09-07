@@ -4,7 +4,7 @@ import { Header } from '@/components/Header';
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<body>
+		<body suppressHydrationWarning={true}>
 			<Header />
 			{children}
 		</body>

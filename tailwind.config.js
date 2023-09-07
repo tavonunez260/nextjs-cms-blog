@@ -15,7 +15,6 @@ module.exports = {
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
-		require('@tailwindcss/custom-forms'),
-		require('@tailwindcss/line-clamp')
+		require('@tailwindcss/custom-forms')
 	]
 };
