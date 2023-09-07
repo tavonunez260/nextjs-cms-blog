@@ -14,10 +14,10 @@ const nextConfig = {
 	sassOptions: {
 		includePaths: [path.join(__dirname, 'styles')],
 	},
-	// images: {
-	// 	unoptimized: true,
-	// 	domains: ['media.graphassets.com']
-	// }
+	images: {
+		unoptimized: true,
+		domains: ['media.graphassets.com']
+	}
 };
 
 module.exports = nextConfig;
