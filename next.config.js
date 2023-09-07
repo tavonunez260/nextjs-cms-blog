@@ -4,7 +4,9 @@ const path = require('path');
 
 const nextConfig = {
 	output: 'export',
-	basePath: '',
+	assetPrefix:
+		process.env.NODE_ENV === 'production' ? 'https://tavonunez260.github.io/nextjs-cms-blog/' : undefined,
+	basePath: process.env.NODE_ENV === 'production' ? 'https://tavonunez260.github.io/nextjs-cms-blog/' : '',
 	reactStrictMode: true,
 	experimental: {
 		appDir: true
