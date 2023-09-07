@@ -12,7 +12,6 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 					<Author {...post.author} />
 					<CommentsForm slug={post.slug} />
 					<Comments slug={post.slug} />
-					Hello {post.author.name}
 				</div>
 				<div className="col-span-1 lg:col-span-4">
 					<div className="relative lg:sticky top-8">

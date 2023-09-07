@@ -1,28 +1,16 @@
-'use client';
-
 import moment from 'moment';
+import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 import { getRecentPosts, getSimilarPosts } from '@/services';
-import { PostType } from '@/types';
-
 
 type PostWidgetType = {
 	categories?: string[];
 	slug?: string;
 };
 
-export function PostWidget({ categories, slug }: PostWidgetType) {
-	const [relatedPosts, setRelatedPosts] = useState<PostType[]>([]);
-
-	useEffect(() => {
-		if (categories && slug) {
-			getSimilarPosts(categories, slug).then(response => setRelatedPosts(response));
-		} else {
-			getRecentPosts().then(result => setRelatedPosts(result));
-		}
-	}, [categories, slug]);
+export async function PostWidget({ categories, slug }: PostWidgetType) {
+	const relatedPosts = categories && slug ? (await getSimilarPosts(categories, slug)) : (await getRecentPosts());
 
 	return (
 		<div className="bg-white shadow-lg rounded-lg p-8 mb-8">
@@ -31,11 +19,13 @@ export function PostWidget({ categories, slug }: PostWidgetType) {
 			</h3>
 			{relatedPosts.map(relatedPost => (
 				<div key={relatedPost.title} className="flex items-center w-full mb-4">
-					<div className="w-16 flex-n one">
-						<img
+					<div className="relative w-8 h-8">
+						<Image
 							src={relatedPost.featuredImage.url}
 							alt={relatedPost.title}
-							className="w-[60px] h-[60px] align-middle rounded-full"
+							fill
+							sizes=""
+							className="rounded-full"
 						/>
 					</div>
 					<div className="flex-grow ml-4">

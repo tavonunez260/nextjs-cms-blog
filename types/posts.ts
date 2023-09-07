@@ -7,7 +7,7 @@ export type CategoryType = {
 	slug: string;
 };
 
-export type AuthorType = {
+export type  AuthorType = {
 	name: string;
 	id: string;
 	bio: string;
@@ -22,10 +22,10 @@ export type Child = {
 }
 
 export enum ChildType {
-	image = 'image',
-	paragraph = 'paragraph',
-	headingThree = 'heading-three',
-	headingFour = 'heading-four',
+	IMAGE = 'image',
+	PARAGRAPH = 'paragraph',
+	HEADING_THREE = 'heading-three',
+	HEADING_FOUR = 'heading-four',
 	default = ''
 }
 
@@ -62,4 +62,17 @@ export type PostType = {
 
 export type NodeType = {
 	node: PostType;
+};
+
+export type CommentRequest = {
+	name: string;
+	email: string;
+	comment: string;
+	slug: string;
+};
+
+export type CommentType = {
+	createdAt: Date;
+	comment: string;
+	name: string;
 };

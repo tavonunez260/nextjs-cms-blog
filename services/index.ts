@@ -1,6 +1,6 @@
 import { request, gql } from 'graphql-request';
 
-import { CategoryType, NodeType, PostType } from '@/types';
+import { CategoryType, CommentRequest, CommentType, NodeType, PostType } from '@/types';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_EP;
 export const getPosts = async (): Promise<NodeType[]> => {
@@ -34,7 +34,10 @@ export const getPosts = async (): Promise<NodeType[]> => {
 		}
 	`;
 
-	const results = await request(graphqlAPI as string, query);
+	const results = await request<{ postsConnection: { edges: NodeType[] } }>(
+		graphqlAPI as string,
+		query
+	);
 	return results.postsConnection.edges;
 };
 
@@ -52,7 +55,7 @@ export const getRecentPosts = async (): Promise<PostType[]> => {
 		}
 	`;
 
-	const results = await request(graphqlAPI as string, query);
+	const results = await request<{ posts: PostType[] }>(graphqlAPI as string, query);
 	return results.posts;
 };
 
@@ -73,7 +76,10 @@ export const getSimilarPosts = async (categories: string[], slug: string): Promi
 		}
 	`;
 
-	const results = await request(graphqlAPI as string, query, { slug, categories });
+	const results = await request<{ posts: PostType[] }>(graphqlAPI as string, query, {
+		slug,
+		categories
+	});
 	return results.posts;
 };
 
@@ -87,8 +93,24 @@ export const getCategories = async (): Promise<CategoryType[]> => {
 		}
 	`;
 
-	const results = await request(graphqlAPI as string, query);
+	const results = await request<{ categories: CategoryType[] }>(graphqlAPI as string, query);
 	return results.categories;
+};
+
+export const getComments = async (slug: string) => {
+	const query = gql`
+    query GetComments($slug:String!) {
+      comments(where: {post: {slug:$slug}}){
+        name
+        createdAt
+        comment
+      }
+    }
+  `;
+
+	const results = await request<{ comments: CommentType[] }>(graphqlAPI as string, query, { slug });
+
+	return results.comments;
 };
 
 export const getPostsDetails = async (slug: string): Promise<PostType> => {
@@ -121,6 +143,18 @@ export const getPostsDetails = async (slug: string): Promise<PostType> => {
 		}
 	`;
 
-	const results = await request(graphqlAPI as string, query, {slug});
+	const results = await request<{ post: PostType }>(graphqlAPI as string, query, { slug });
 	return results.post;
+};
+
+export const submitComment = async (obj: CommentRequest) => {
+	const result = await fetch('/api/comments', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(obj)
+	});
+
+	return result.json();
 };

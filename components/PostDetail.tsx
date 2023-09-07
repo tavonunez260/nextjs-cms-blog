@@ -1,4 +1,5 @@
 import moment from 'moment/moment';
+import Image from 'next/image';
 import React from 'react';
 
 import { Child, ChildType, PostType, RawChild } from '@/types';
@@ -27,7 +28,7 @@ export function PostDetail(post: PostType) {
 		}
 
 		switch (type) {
-			case ChildType.headingThree:
+			case ChildType.HEADING_THREE:
 				return (
 					<h3 key={index} className="text-xl font-semibold mb-4">
 						{(modifiedText as React.ReactNode[])?.map((item, i) => (
@@ -35,7 +36,7 @@ export function PostDetail(post: PostType) {
 						))}
 					</h3>
 				);
-			case ChildType.paragraph:
+			case ChildType.PARAGRAPH:
 				return (
 					<p key={index} className="mb-8">
 						{(modifiedText as React.ReactNode[])?.map((item, i) => (
@@ -43,7 +44,7 @@ export function PostDetail(post: PostType) {
 						))}
 					</p>
 				);
-			case ChildType.headingFour:
+			case ChildType.HEADING_FOUR:
 				return (
 					<h4 key={index} className="text-md font-semibold mb-4">
 						{(modifiedText as React.ReactNode[])?.map((item, i) => (
@@ -51,15 +52,20 @@ export function PostDetail(post: PostType) {
 						))}
 					</h4>
 				);
-			case ChildType.image:
+			case ChildType.IMAGE:
 				return (
-					<img
-						key={index}
-						alt={(obj as RawChild)?.title}
-						height={(obj as RawChild)?.height}
-						width={(obj as RawChild)?.width}
-						src={(obj as RawChild)?.src}
-					/>
+					<div
+						className="relative mx-auto"
+						style={{ width: (obj as RawChild)?.width, height: (obj as RawChild)?.height }}
+					>
+						<Image
+							key={index}
+							alt={(obj as RawChild)?.title as string}
+							fill
+							sizes=""
+							src={(obj as RawChild)?.src as string}
+						/>
+					</div>
 				);
 			default:
 				return modifiedText;
@@ -68,21 +74,27 @@ export function PostDetail(post: PostType) {
 
 	return (
 		<div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 ">
-			<div className="relative overflow-hidden shadow-md mb-6">
-				<img
+			<div className="relative w-full h-80 overflow-hidden shadow-md mb-6">
+				<Image
 					src={post.featuredImage.url}
 					alt={post.title}
-					className="object-top h-full w-full rounded-t-lg"
+					fill
+					sizes=""
+					className="object-cover rounded-t-lg"
 				/>
 			</div>
 			<div className="px-4 lg:px-0">
 				<div className="flex items-center mb-8 w-full">
 					<div className="flex items-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
-						<img
-							src={post.author.photo.url}
-							alt={post.author.name}
-							className="w-[30px] h-[30px] align-middle rounded-full"
-						/>
+						<div className="relative w-[30px] h-[30px]">
+							<Image
+								src={post.author.photo.url}
+								alt={post.author.name}
+								fill
+								sizes=""
+								className="rounded-full"
+							/>
+						</div>
 						<p className="inline align-middle text-gray-700 ml-2 text-lg">{post.author.name}</p>
 					</div>
 					<div className="font-medium text-gray-700">
