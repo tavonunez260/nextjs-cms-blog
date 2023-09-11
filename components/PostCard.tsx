@@ -3,8 +3,7 @@ import Link from 'next/link';
 
 import { PostType } from '@/types';
 
-export function PostCard(post: PostType) {
-
+export function PostCard({ post }: { post: PostType }) {
 	return (
 		<div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
 			<div className="relative overflow-hidden shadow-md mb-6">

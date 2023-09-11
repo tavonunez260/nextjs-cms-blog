@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Child, ChildType, PostType, RawChild } from '@/types';
 
-export function PostDetail(post: PostType) {
+export function PostDetail({ post }: { post: PostType }) {
 	const getContentFragment = (
 		index: number,
 		text: string | React.ReactNode,
@@ -73,11 +73,7 @@ export function PostDetail(post: PostType) {
 	return (
 		<div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8 ">
 			<div className="relative w-full h-80 overflow-hidden shadow-md mb-6">
-				<img
-					src={post.featuredImage.url}
-					alt={post.title}
-					className="object-cover rounded-t-lg"
-				/>
+				<img src={post.featuredImage.url} alt={post.title} className="object-cover rounded-t-lg" />
 			</div>
 			<div className="px-4 lg:px-0">
 				<div className="flex items-center mb-8 w-full">

@@ -24,8 +24,8 @@ export function CommentsForm({ slug }: { slug: string }) {
 		}
 
 		if (storeData) {
-			window.localStorage.setItem('name',  name);
-			window.localStorage.setItem('email',  email);
+			window.localStorage.setItem('name', name);
+			window.localStorage.setItem('email', email);
 		} else {
 			window.localStorage.removeItem('name');
 			window.localStorage.removeItem('email');
@@ -45,9 +45,7 @@ export function CommentsForm({ slug }: { slug: string }) {
 		if (emailEl && emailEl.current) {
 			emailEl.current.value = window.localStorage.getItem('name') as string;
 		}
-
 	}, []);
-
 
 	return (
 		<div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">

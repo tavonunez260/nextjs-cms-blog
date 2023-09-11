@@ -9,7 +9,8 @@ type PostWidgetType = {
 };
 
 export async function PostWidget({ categories, slug }: PostWidgetType) {
-	const relatedPosts = categories && slug ? (await getSimilarPosts(categories, slug)) : (await getRecentPosts());
+	const relatedPosts =
+		categories && slug ? await getSimilarPosts(categories, slug) : await getRecentPosts();
 
 	return (
 		<div className="bg-white shadow-lg rounded-lg p-8 mb-8">
@@ -26,8 +27,12 @@ export async function PostWidget({ categories, slug }: PostWidgetType) {
 						/>
 					</div>
 					<div className="flex-grow ml-4">
-						<p className="text-gray-500 font-xs">{moment(relatedPost.createdAt).format('MMM DD, YYYY ')}</p>
-						<Link href={`/post/${relatedPost.slug}`} className="text-md">{relatedPost.title}</Link>
+						<p className="text-gray-500 font-xs">
+							{moment(relatedPost.createdAt).format('MMM DD, YYYY ')}
+						</p>
+						<Link href={`/post/${relatedPost.slug}`} className="text-md">
+							{relatedPost.title}
+						</Link>
 					</div>
 				</div>
 			))}

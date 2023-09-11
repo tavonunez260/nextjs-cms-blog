@@ -6,3 +6,6 @@ export * from './Header';
 export * from './PostCard';
 export * from './PostDetail';
 export * from './PostWidget';
+export * from './FeaturedPostCard';
+export * from './Carousel';
+export * from './Loader';
