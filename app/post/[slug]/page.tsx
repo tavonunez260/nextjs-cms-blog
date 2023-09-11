@@ -1,7 +1,7 @@
 import { Author, Categories, Comments, CommentsForm, PostDetail, PostWidget } from '@/components';
 import { getPosts, getPostsDetails } from '@/services';
 
-export default async function Slug({ params }: { params: { slug: string } }) {
+export default async function PostPage({ params }: { params: { slug: string } }) {
 	const post = await getPostsDetails(params.slug);
 
 	return (

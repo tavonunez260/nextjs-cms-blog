@@ -1,11 +1,7 @@
-'use client';
-
-import React from 'react';
-
 import { PostCard, Categories } from '@/components';
 import { getCategories, getCategoryPost } from '@/services';
 
-export default async function CategoryPost({ params }: { params: { slug: string } }) {
+export default async function CategoryPage({ params }: { params: { slug: string } }) {
 	const posts = await getCategoryPost(params.slug);
 
 	return (
